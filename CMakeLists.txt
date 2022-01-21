@@ -291,6 +291,7 @@ if (Python_FOUND)
 	target_compile_definitions(pyngp PUBLIC -DNGP_PYTHON)
 	pybind11_extension(pyngp)
 
+
 	if (MSVC)
 		# Copy dlls needed at runtime
 		file(GLOB CUBLAS_DLLS "${CUDA_COMPILER_BIN}/cublas*.dll")
@@ -301,4 +302,10 @@ if (Python_FOUND)
 			)
 		endif()
 	endif()
+endif()
+
+
+install(TARGETS testbed DESTINATION "${CMAKE_INSTALL_BINDIR}")
+if (Python_FOUND)
+    install(TARGETS pyngp COMPONENT python DESTINATION "${PYTHON_LIBRARY_PATH}")
 endif()
